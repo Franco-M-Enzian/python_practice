@@ -1,9 +1,8 @@
 pathname = 'test.txt'
+contents = ''
 
-file = open(pathname)
-contents = file.read()
-file.close()
-
-file = open(pathname, 'w')
-file.write(contents + "HELLO")
-file.close()
+with open(pathname) as f:
+    contents = f.read()
+    
+with open(pathname, 'w') as f:
+    f.write(contents + "\nHEY!")
