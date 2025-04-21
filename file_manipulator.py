@@ -1,29 +1,28 @@
 import sys
 
 cmd = sys.argv[1]
-inputpath = sys.argv[2]
 contents = ''
 
-if cmd == 'reverse':
+def reverse(inputpath, outputpath):
     outputpath = sys.argv[3]
 
     with open(inputpath) as f:
         contents = f.read()
 
     with open(outputpath, 'w') as f:
-        f.write(contents[::-1])
+        f.write(contents[::-1])  
 
-if cmd == 'copy':
-    outputpath = sys.argv[3]
+
+def copy(inputpath, outputpath):
 
     with open(inputpath) as f:
         contents = f.read()
 
     with open(outputpath, 'w') as f:
         f.write(contents)
-        
-if cmd == 'depulicate-contents':
-    n = sys.argv[3]
+
+
+def duplicateContents(inputpath, n):
     n = int(n)
 
     with open(inputpath) as f:
@@ -32,17 +31,29 @@ if cmd == 'depulicate-contents':
     with open(inputpath, 'w') as f:
         while n > 0:
             f.write(contents)
-            n -= 1
+            n -= 1  
 
-if cmd == 'replace-string':
-    needle = sys.argv[3]
-    new_string = sys.argv[4]
+
+def replaceString(inputpath, needle, newstring):
     
-    if needle != 'needle' or new_string != 'newstring':
+    if needle != 'needle' or newstring != 'newstring':
         print("Try again.")
-    
+
     with open(inputpath) as f:
         contents = f.read()
 
     with open(inputpath, 'w') as f:
-        f.write(contents.replace(needle, new_string))
+        f.write(contents.replace(needle, newstring))
+
+
+if cmd == 'reverse':
+    reverse(sys.argv[2], sys.argv[3])
+
+if cmd == 'copy':
+    copy(sys.argv[2], sys.argv[3])
+        
+if cmd == 'duplicate-contents':
+    duplicateContents(sys.argv[2], sys.argv[3])
+
+if cmd == 'replace-string':
+    replaceString(sys.argv[2], sys.argv[3], sys.argv[4])
